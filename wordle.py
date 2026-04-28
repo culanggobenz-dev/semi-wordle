@@ -17,6 +17,47 @@ DEBUG = True
 # Application Functions
 # TODO: Score Guess Function
 def score_guess(guess, target):
+"""
+Scoring algorithm to determine how correct the guess word is
+
+Arguments
+---------
+guess = the player's guess word
+target = the target word for the player to guess
+
+Returns
+-------
+The function should outputs three numbers(0,1,2).
+Each number corresponds to how correct the letter of the guess word compared to the target.
+2 = Correct
+1 = Not in position
+0 = Wrong letter
+
+Examples
+--------
+Example#1:
+
+guess_word = "holel"
+target_word = "hello"
+
+score_guess(guess_word, target_word)
+
+print(score)
+
+Expected results: [2,1,2,1,1]
+
+Example#2:
+guess_word = "hello"
+target_word = "worlds"
+
+score_guess(guess_word, target_word)
+
+print(score)
+
+Expected results: Error: Incorrect word length!
+
+"""
+
     index = 0
     score = []
     
