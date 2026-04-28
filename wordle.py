@@ -120,7 +120,7 @@ def show_greeting():
 def show_instructions():
     print("Instructions")
 
-# TODO: Any Optional Additional Functions 
+# TODO: Any Optional Additional Functions
 
 # TODO: Play Game Function
 def play_game():
@@ -175,16 +175,16 @@ def test_game():
     # Test Case 5
     # TODO: Set up your arrange-act-assert test case.
     ##Arrange
-    target_words_filename = "resources/all_words.txt"
+    target_words_filename = "resources/target_words.txt"
 
     ##Act
-    target_words_list = read_words_from_file(all_word_filename)
+    target_words_list = read_words_from_file(target_words_filename)
 
     # Create the statement to show the last 5 words and check that they are correct
     ##Assert
-    print("Got:", target_words_list[:5], "Expected:",  ['aahed', 'aalii', 'aargh', 'aarti', 'abaca'])
-    
+    print("Got:", target_words_list[-5:], "Expected:",  ['young', 'youth', 'zebra', 'zesty', 'zonal'])
 
+    
 #TODO: Main Program
 if DEBUG:
     test_game()
