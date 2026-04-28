@@ -17,46 +17,46 @@ DEBUG = True
 # Application Functions
 # TODO: Score Guess Function
 def score_guess(guess, target):
-"""
-Scoring algorithm to determine how correct the guess word is
+    """
+    Scoring algorithm to determine how correct the guess word is
 
-Arguments
----------
-guess = the player's guess word
-target = the target word for the player to guess
+    Arguments
+    ---------
+    guess = the player's guess word
+    target = the target word for the player to guess
 
-Returns
--------
-The function should outputs three numbers(0,1,2).
-Each number corresponds to how correct the letter of the guess word compared to the target.
-2 = Correct
-1 = Not in position
-0 = Wrong letter
+    Returns
+    -------
+    The function should outputs three numbers(0,1,2).
+    Each number corresponds to how correct the letter of the guess word compared to the target.
+    2 = Correct
+    1 = Not in position
+    0 = Wrong letter
 
-Examples
---------
-Example#1:
+    Examples
+    --------
+    Example#1:
 
-guess_word = "holel"
-target_word = "hello"
+    guess_word = "holel"
+    target_word = "hello"
 
-score_guess(guess_word, target_word)
+    score_guess(guess_word, target_word)
 
-print(score)
+    print(score)
 
-Expected results: [2,1,2,1,1]
+    Expected results: [2,1,2,1,1]
 
-Example#2:
-guess_word = "hello"
-target_word = "worlds"
+    Example#2:
+    guess_word = "hello"
+    target_word = "worlds"
 
-score_guess(guess_word, target_word)
+    score_guess(guess_word, target_word)
 
-print(score)
+    print(score)
 
-Expected results: Error: Incorrect word length!
+    Expected results: Error: Incorrect word length!
 
-"""
+    """
 
     index = 0
     score = []
@@ -128,6 +128,29 @@ def test_game():
 
     ##Assert
     print("Score:", score, "Expected:", [2, 2, 2, 2, 2])
+
+    # Text Case 4
+    ##Arrange
+    all_word_filename = "all_words.txt"
+
+    ##Act
+    all_word_list = read_words_from_file(all_word_filename)
+
+    ##Assert
+    print("Got:", all_word_list[:5], "Expected:",  ['aahed', 'aalii', 'aargh', 'aarti', 'abaca'])
+
+    # Test Case 5
+    # TODO: Set up your arrange-act-assert test case.
+    ##Arrange
+    target_words_filename = "all_words.txt"
+
+    ##Act
+    target_words_list = read_words_from_file(all_word_filename)
+
+    # Create the statement to show the last 5 words and check that they are correct
+    ##Assert
+    print("Got:", target_words_list[:5], "Expected:",  ['aahed', 'aalii', 'aargh', 'aarti', 'abaca'])
+    
 
 #TODO: Main Program
 if DEBUG:
