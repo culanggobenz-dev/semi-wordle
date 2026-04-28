@@ -11,7 +11,7 @@
 
 # Variables and Constants
 # TODO: Define Constants
-
+DEBUG = False
 # TODO: Define Variables 
 
 # Application Functions
@@ -30,7 +30,15 @@ def show_instructions():
 # TODO: Any Optional Additional Functions 
 
 # TODO: Play Game Function
+def play_game():
+    print("Play Game")
 
 #TODO: Testing Function
+def test_game():
+    print ("Test Game")
 
 #TODO: Main Program
+if DEBUG:
+    test_game()
+else:
+    play_game()
