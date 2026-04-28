@@ -6,16 +6,22 @@
 # Course: Certificate IV Programming
 # Lecturer: Para O'Kelly
 
-# TODO:
-#Repiclate wordle mechanics using learned programming
+# Summary:
+# Repiclate wordle mechanics using learned programming
 
 # Variables and Constants
-# TODO: Define Constants
+# Constants
 DEBUG = False
-# TODO: Define Variables 
+ALL_WORDS_FILENAME = "resources/all_words.txt"
+TARGET_WORDS_FILENAME = "resources/target_words.txt"
+MAX_GUESS = 6
+# Variables 
+player_name = ""
+all_words_list = []
+target_words_list = []
 
 # Application Functions
-# TODO: Score Guess Function
+# Score Guess Function
 def score_guess(guess, target):
     """
     Scoring algorithm to determine how correct the guess word is
@@ -77,7 +83,7 @@ def score_guess(guess, target):
 
         return score
 
-# TODO: Read File Into Word List Function
+# Read File Into Word List Function
 def read_words_from_file(filename):
     """
     Reads data from a file, line by line, then stores it on a list.
@@ -112,7 +118,7 @@ def read_words_from_file(filename):
 
     return word_list
 
-# TODO: Display Greeting Function
+# Display Intro Greeting Function
 def show_greeting():
     print("+---------- Semi-Wordle ----------+")
     print("|                                 |")
@@ -120,11 +126,63 @@ def show_greeting():
     print("|                                 |")
     print("+---------------------------------+")
 
-# TODO: Display Instructions Function
-def show_instructions():
-    print("Instructions")
+    print("What is your name, player?")
+    player = input("").capitalize()
+    print(f"Hello, {player}! Welcome to wordle.")
 
-# TODO: Any Optional Additional Functions
+# Display Instructions Function
+def show_instructions():
+    print("+--------------- Instructions --------------+")
+    print("| You have 6 tries to guess a random word.  |")
+    print("|                                           |")
+    print("| Each guess will be given a score to help  |")
+    print("| you assess how close your guess is:       |")
+    print("|  O = Letter is in the right place         |")
+    print("|  ? = Letter is misplaced                  |")
+    print("|  - = Letter is not found                  |")
+    print("+-------------------------------------------+")
+
+def confirm_instructions():
+    """
+    Part of onboarding process that lets the player decide when to start the game and read instructions
+    """
+
+    #Flag variable - used to break the while loop
+    is_ready = False
+    
+    print("Do you know how to play wordle? Enter Y(Yes) or N(No).")
+    response = input("").lower() #User input are lowered (case insensitive)
+
+    # Conditional Statement
+    ##Player don't know how to play the game
+    if response == "n":
+        show_instructions()
+
+        # Infinite loop until player is ready
+        while is_ready == False:
+            print("Ready to start the challenge? Enter Y(Yes) or N(Re-read instructions).")
+            player_ready = input("").lower()
+
+            if player_ready == "y":
+                is_ready = True #Loop breaks here. Player is ready.
+            elif player_ready == "n":
+                show_instructions()
+                continue
+            else:
+                print("Use Y and N only!") #Catch error for unwanted responses
+                continue
+    ##Player already know how to play        
+    elif response == "y":
+        print("Awesome! Let's see what you've got - ready?")
+        input("Press Enter to start!")
+
+    else:
+        print("Use Y and N only!") #Catch error for unwanted responses
+        confirm_instructions()
+
+    
+
+# Any Optional Additional Functions
 def random_word(words_list):
     """
     Picks a random word from the given list.
@@ -182,13 +240,11 @@ def display_score(score, guess):
      W O R L D
     """
     
-    # TODO: Set score output equal to ""
     score_output = ""
-    # TODO: Set word output to ""
     word_output = ""
 
-    # TODO: Build score output
-    #            Eg, (1,1,0,2,2) should become "? ? - O O"
+    # Build score output
+    # Eg, (1,1,0,2,2) should become "? ? - O O"
     for num in score:
         if num == 0:
             score_output += " -"
@@ -197,110 +253,153 @@ def display_score(score, guess):
         elif num ==2:
             score_output += " O"
 
-    # TODO: Build word output based on guess word
-    #            Eg, "rival" should become "R I V A L"
+    # Build word output based on guess word
+    # "rival" should become "R I V A L"
     caps_guess = guess.upper()
 
     for char in caps_guess:
         word_output += f" {char}"
 
-    # TODO: Display score output
+    # Display score output
     print(score_output)
-    # TODO: Display word output
+    # Display word output
     print(word_output)
 
+def gameplay(target_word, valid_word_list, max_guess):
+    remaining_guess = max_guess
+
+"""
+CONTINUE HERE
+"""
+##    while remaining_guess > 0:
+        
+
     
-# TODO: Play Game Function
+# Play Game Function
 def play_game():
     print("Program Starting!") #Changed from Play Game
 
-#TODO: Testing Function
+    # Game Onboarding
+    ##Greeting
+    show_greeting()
+
+    ##Confirm Instruction
+    confirm_instructions()
+
+    # Game Start
+    ##File I/O: storing data to lists
+    all_words_list = read_words_from_file(ALL_WORDS_FILENAME)
+    target_words_list = read_words_from_file(TARGET_WORDS_FILENAME)
+
+    ##Randomizing Selection
+    target_word = random_word(target_words_list)
+
+    ##Gameplay Loop & Ending
+    
+    
+    
+    
+
+# Testing Function
 def test_game():
-    print ("Test Game")
-##    # Test Case 1
-##    ##Arrange
-##    guess_word = "hello"
-##    target_word = "train"
-##
-##    ##Act
-##    score = score_guess(guess_word, target_word)
-##
-##    ##Assert
-##    print("Score:", score, "Expected:", [0, 0, 0, 0, 0])
-##
-##    # Text Case 2
-##    ##Arrange
-##    guess_word = "hello"
-##    target_word = "hello"
-##
-##    ##Act
-##    score = score_guess(guess_word, target_word)
-##
-##    ##Assert
-##    print("Score:", score, "Expected:", [2, 2, 2, 2, 2])
-##
-##    # Text Case 3
-##    ##Arrange
-##    guess_word = "word"
-##    target_word = "hello"
-##
-##    ##Act
-##    score = score_guess(guess_word, target_word)
-##
-##    ##Assert
-##    print("Score:", score, "Expected:", [2, 2, 2, 2, 2])
+    print ("Debugging Mode") #Changed from Test Game
+    
+    # Test Case 1
+    print("Test Case #1: Wrong Word; Same Length")
+    ##Arrange
+    guess_word = "hello"
+    target_word = "train"
 
-##    # Text Case 4
-##    ##Arrange
-##    all_word_filename = "resources/all_words.txt"
-##
-##    ##Act
-##    all_word_list = read_words_from_file(all_word_filename)
-##
-##    ##Assert
-##    print("Got:", all_word_list[:5], "Expected:",  ['aahed', 'aalii', 'aargh', 'aarti', 'abaca'])
-##
-##    # Test Case 5
-##    # TODO: Set up your arrange-act-assert test case.
-##    ##Arrange
-##    target_words_filename = "resources/target_words.txt"
-##
-##    ##Act
-##    target_words_list = read_words_from_file(target_words_filename)
-##
-##    # Create the statement to show the last 5 words and check that they are correct
-##    ##Assert
-##    print("Got:", target_words_list[-5:], "Expected:",  ['young', 'youth', 'zebra', 'zesty', 'zonal'])
-##
-##     # Test Case 6
-##    ##Arrange
-##    target_words_filename = "resources/target_words.txt"
-##    target_words_list = read_words_from_file(target_words_filename)
-##    random_words_list = []
-##
-##    ##Act
-##    for count in range(3):
-##        random_words_list.append(random_word(target_words_list))
-##
-##    # Create the statement to show the last 5 words and check that they are correct
-##    ##Assert
-##    print(random_words_list)
+    ##Act
+    score = score_guess(guess_word, target_word)
 
-##     # Test Case 7
-##    ##Arrange
-##    score = [1,0,1,1,2,2,0,2]
-##    guess_word = "terrific"
-##
-##    ##Act
-##    display_score(score, guess_word)
-##
-##    ##Assert
-##    print("Expected: \n ? - ? ? O O - O \n T E R R I F I C")
+    ##Assert
+    print("Score:", score, "Expected:", [0, 0, 0, 0, 0])
+    print("")
+
+    # Text Case 2
+    ##Arrange
+    print("Test Case #2: Correct Word")
+    guess_word = "hello"
+    target_word = "hello"
+
+    ##Act
+    score = score_guess(guess_word, target_word)
+
+    ##Assert
+    print("Score:", score, "Expected:", [2, 2, 2, 2, 2])
+    print("")
+    
+    # Text Case 3
+    print("Test Case #3: Correct Letters; Wrong Placement")
+    ##Arrange
+    guess_word = "world"
+    target_word = "hello"
+
+    ##Act
+    score = score_guess(guess_word, target_word)
+
+    ##Assert
+    print("Score:", score, "Expected:", [0, 1, 0, 2, 0])
+    print("")
+
+    # Text Case 4
+    print("Test Case #4: File Reading Test - all_words.txt")
+    ##Arrange
+    all_word_filename = "resources/all_words.txt"
+
+    ##Act
+    all_word_list = read_words_from_file(all_word_filename)
+
+    ##Assert
+    print("Got:", all_word_list[:5], "Expected:",  ['aahed', 'aalii', 'aargh', 'aarti', 'abaca'])
+    print("")
+
+    # Test Case 5
+    print("Test Case #5: File Reading Test - target_words.txt")
+    # TODO: Set up your arrange-act-assert test case.
+    ##Arrange
+    target_words_filename = "resources/target_words.txt"
+
+    ##Act
+    target_words_list = read_words_from_file(target_words_filename)
+
+    # Create the statement to show the last 5 words and check that they are correct
+    ##Assert
+    print("Got:", target_words_list[-5:], "Expected:",  ['young', 'youth', 'zebra', 'zesty', 'zonal'])
+    print("")
+
+    # Test Case 6
+    print("Test Case #6: Random Word") 
+    ##Arrange
+    target_words_filename = "resources/target_words.txt"
+    target_words_list = read_words_from_file(target_words_filename)
+    random_words_list = []
+
+    ##Act
+    for count in range(3):
+        random_words_list.append(random_word(target_words_list))
+
+    # Create the statement to show the last 5 words and check that they are correct
+    ##Assert
+    print(random_words_list)
+    print("")
+
+    # Test Case 7
+    print("Test Case #6: Display Score")
+    ##Arrange
+    score = [1,0,1,1,2,2,0,2]
+    guess_word = "terrific"
+
+    ##Act
+    display_score(score, guess_word)
+
+    ##Assert
+    print("Expected: \n ? - ? ? O O - O \n T E R R I F I C")
+    print("")
 
 #TODO: Main Program
 if DEBUG:
     test_game()
 else:
     play_game()
-
-show_greeting()
