@@ -53,6 +53,17 @@ def test_game():
     ##Assert
     print("Score:", score, "Expected:", [0, 0, 0, 0, 0])
 
+    # Text Case 2
+    ##Arrange
+    guess_word = "hello"
+    target_word = "hello"
+
+    ##Act
+    score = score_guess(guess_word, target_word)
+
+    ##Assert
+    print("Score:", score, "Expected:", [2, 2, 2, 2, 2])
+
 #TODO: Main Program
 if DEBUG:
     test_game()
