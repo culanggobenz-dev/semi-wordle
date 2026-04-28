@@ -149,6 +149,63 @@ def random_word(words_list):
 
     return target_word
 
+def display_score(score, guess):
+    """
+    Displays the score of the guess attempt.
+
+    Argument
+    --------
+    score = the score got from the score_guess function
+    guess = word guess by the player using user input
+
+    Returns
+    -------
+    Prints out the score and the guess of the player.
+    Instead of showing 0,1,2, it is replaced with characters for readability:
+    0 = -
+    1 = ?
+    2 = O
+    
+    Example
+    --------
+    score = [1,1,2,2,0]
+    guess_word = "world"
+
+    display_score(score, guess_word)
+
+    Expected Results:
+     ? ? O O -
+     W O R L D
+    """
+    
+    # TODO: Set score output equal to ""
+    score_output = ""
+    # TODO: Set word output to ""
+    word_output = ""
+
+    # TODO: Build score output
+    #            Eg, (1,1,0,2,2) should become "? ? - O O"
+    for num in score:
+        if num == 0:
+            score_output += " -"
+        elif num == 1:
+            score_output += " ?"
+        elif num ==2:
+            score_output += " O"
+
+    # TODO: Build word output based on guess word
+    #            Eg, "rival" should become "R I V A L"
+    caps_guess = guess.upper()
+
+    for char in caps_guess:
+        word_output += f" {char}"
+
+    # TODO: Display score output
+    print(score_output)
+    # TODO: Display word output
+    print(word_output)
+
+    
 # TODO: Play Game Function
 def play_game():
     print("Play Game")
@@ -210,24 +267,32 @@ def test_game():
 ##    # Create the statement to show the last 5 words and check that they are correct
 ##    ##Assert
 ##    print("Got:", target_words_list[-5:], "Expected:",  ['young', 'youth', 'zebra', 'zesty', 'zonal'])
+##
+##     # Test Case 6
+##    ##Arrange
+##    target_words_filename = "resources/target_words.txt"
+##    target_words_list = read_words_from_file(target_words_filename)
+##    random_words_list = []
+##
+##    ##Act
+##    for count in range(3):
+##        random_words_list.append(random_word(target_words_list))
+##
+##    # Create the statement to show the last 5 words and check that they are correct
+##    ##Assert
+##    print(random_words_list)
 
-     # Test Case 6
+     # Test Case 7
     ##Arrange
-    target_words_filename = "resources/target_words.txt"
-    target_words_list = read_words_from_file(target_words_filename)
-    random_words_list = []
+    score = [1,0,1,1,2,2,0,2]
+    guess_word = "terrific"
 
     ##Act
-    for count in range(3):
-        random_words_list.append(random_word(target_words_list))
+    display_score(score, guess_word)
 
-    # Create the statement to show the last 5 words and check that they are correct
     ##Assert
-    print(random_words_list)
+    print("Expected: \n ? - ? ? O O - O \n T E R R I F I C")
 
-    
-
-    
 #TODO: Main Program
 if DEBUG:
     test_game()
