@@ -16,6 +16,12 @@ DEBUG = False
 
 # Application Functions
 # TODO: Score Guess Function
+def score_guess(guess, target):
+    score = []
+    for char in target:
+        score.append(0)
+
+    return score
 
 # TODO: Read File Into Word List Function
 
@@ -45,7 +51,7 @@ def test_game():
     score = score_guess(guess_word, target_word)
 
     ##Assert
-    print("Score:", score, "Expected:" [0, 0, 0, 0, 0])
+    print("Score:", score, "Expected:", [0, 0, 0, 0, 0])
 
 #TODO: Main Program
 if DEBUG:
