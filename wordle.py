@@ -11,20 +11,28 @@
 
 # Variables and Constants
 # TODO: Define Constants
-DEBUG = False
+DEBUG = True
 # TODO: Define Variables 
 
 # Application Functions
 # TODO: Score Guess Function
 def score_guess(guess, target):
+    index = 0
     score = []
     
     if len(target) != len(guess):
         return "Error: Incorrect word length!"
     
     else:
-        for char in target:
-            score.append(2)
+        for char in guess:
+            if char is target[index]:
+                score.append(2)
+            elif char in target:
+                score.append(1)
+            else:
+                score.append(0)
+
+            index += 1
 
         return score
 
@@ -61,6 +69,17 @@ def test_game():
     # Text Case 2
     ##Arrange
     guess_word = "hello"
+    target_word = "hello"
+
+    ##Act
+    score = score_guess(guess_word, target_word)
+
+    ##Assert
+    print("Score:", score, "Expected:", [2, 2, 2, 2, 2])
+
+    # Text Case 3
+    ##Arrange
+    guess_word = "word"
     target_word = "hello"
 
     ##Act
