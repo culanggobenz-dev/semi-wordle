@@ -121,6 +121,33 @@ def show_instructions():
     print("Instructions")
 
 # TODO: Any Optional Additional Functions
+def random_word(words_list):
+    """
+    Picks a random word from the given list.
+
+    Argument
+    --------
+    words_list =  list of words that is read from a file
+
+    Returns
+    -------
+    Outputs a single word that is randomly picked.
+    
+    Example
+    --------
+    sample_list = [apple, banana, strawberry, cheese]
+
+    example_word = random_word(sample_list)
+
+    print(example_word)
+
+    Expected output: /Any of the fruit or cheese on the list/
+    """
+    import random
+
+    target_word = random.choice(words_list)
+
+    return target_word
 
 # TODO: Play Game Function
 def play_game():
@@ -162,27 +189,43 @@ def test_game():
 ##    ##Assert
 ##    print("Score:", score, "Expected:", [2, 2, 2, 2, 2])
 
-    # Text Case 4
-    ##Arrange
-    all_word_filename = "resources/all_words.txt"
+##    # Text Case 4
+##    ##Arrange
+##    all_word_filename = "resources/all_words.txt"
+##
+##    ##Act
+##    all_word_list = read_words_from_file(all_word_filename)
+##
+##    ##Assert
+##    print("Got:", all_word_list[:5], "Expected:",  ['aahed', 'aalii', 'aargh', 'aarti', 'abaca'])
+##
+##    # Test Case 5
+##    # TODO: Set up your arrange-act-assert test case.
+##    ##Arrange
+##    target_words_filename = "resources/target_words.txt"
+##
+##    ##Act
+##    target_words_list = read_words_from_file(target_words_filename)
+##
+##    # Create the statement to show the last 5 words and check that they are correct
+##    ##Assert
+##    print("Got:", target_words_list[-5:], "Expected:",  ['young', 'youth', 'zebra', 'zesty', 'zonal'])
 
-    ##Act
-    all_word_list = read_words_from_file(all_word_filename)
-
-    ##Assert
-    print("Got:", all_word_list[:5], "Expected:",  ['aahed', 'aalii', 'aargh', 'aarti', 'abaca'])
-
-    # Test Case 5
-    # TODO: Set up your arrange-act-assert test case.
+     # Test Case 6
     ##Arrange
     target_words_filename = "resources/target_words.txt"
+    target_words_list = read_words_from_file(target_words_filename)
+    random_words_list = []
 
     ##Act
-    target_words_list = read_words_from_file(target_words_filename)
+    for count in range(3):
+        random_words_list.append(random_word(target_words_list))
 
     # Create the statement to show the last 5 words and check that they are correct
     ##Assert
-    print("Got:", target_words_list[-5:], "Expected:",  ['young', 'youth', 'zebra', 'zesty', 'zonal'])
+    print(random_words_list)
+
+    
 
     
 #TODO: Main Program
