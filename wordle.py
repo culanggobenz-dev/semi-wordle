@@ -18,10 +18,15 @@ DEBUG = False
 # TODO: Score Guess Function
 def score_guess(guess, target):
     score = []
-    for char in target:
-        score.append(0)
+    
+    if len(target) != len(guess):
+        return "Error: Incorrect word length!"
+    
+    else:
+        for char in target:
+            score.append(2)
 
-    return score
+        return score
 
 # TODO: Read File Into Word List Function
 
