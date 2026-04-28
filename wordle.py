@@ -11,7 +11,7 @@
 
 # Variables and Constants
 # TODO: Define Constants
-DEBUG = True
+DEBUG = False
 # TODO: Define Variables 
 
 # Application Functions
@@ -114,7 +114,11 @@ def read_words_from_file(filename):
 
 # TODO: Display Greeting Function
 def show_greeting():
-    print("Welcome")
+    print("+---------- Semi-Wordle ----------+")
+    print("|                                 |")
+    print("|       Welcome to Wordle!        |")
+    print("|                                 |")
+    print("+---------------------------------+")
 
 # TODO: Display Instructions Function
 def show_instructions():
@@ -208,7 +212,7 @@ def display_score(score, guess):
     
 # TODO: Play Game Function
 def play_game():
-    print("Play Game")
+    print("Program Starting!") #Changed from Play Game
 
 #TODO: Testing Function
 def test_game():
@@ -282,19 +286,21 @@ def test_game():
 ##    ##Assert
 ##    print(random_words_list)
 
-     # Test Case 7
-    ##Arrange
-    score = [1,0,1,1,2,2,0,2]
-    guess_word = "terrific"
-
-    ##Act
-    display_score(score, guess_word)
-
-    ##Assert
-    print("Expected: \n ? - ? ? O O - O \n T E R R I F I C")
+##     # Test Case 7
+##    ##Arrange
+##    score = [1,0,1,1,2,2,0,2]
+##    guess_word = "terrific"
+##
+##    ##Act
+##    display_score(score, guess_word)
+##
+##    ##Assert
+##    print("Expected: \n ? - ? ? O O - O \n T E R R I F I C")
 
 #TODO: Main Program
 if DEBUG:
     test_game()
 else:
     play_game()
+
+show_greeting()
