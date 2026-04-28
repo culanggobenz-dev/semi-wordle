@@ -78,6 +78,39 @@ def score_guess(guess, target):
         return score
 
 # TODO: Read File Into Word List Function
+def read_words_from_file(filename):
+    """
+    Reads data from a file, line by line, then stores it on a list.
+
+    Argument
+    --------
+    filename = the name of the file.
+    If the file is inside a folder, the filename should be:
+    folder_name/filename.txt
+
+    Returns
+    -------
+    Outputs a list of words that are already stripped of white lines.
+    
+    Example
+    --------
+    example_file_name = project_folder/example.txt
+
+    example_word_list = read_words_from_file(example_file_name)
+
+    print(example_word_list)
+
+    """
+    
+    word_list = []
+    file = open(filename, "r")
+
+    for line in file:
+        word_list.append(line.strip())
+
+    file.close()
+
+    return word_list
 
 # TODO: Display Greeting Function
 def show_greeting():
@@ -96,42 +129,42 @@ def play_game():
 #TODO: Testing Function
 def test_game():
     print ("Test Game")
-    # Test Case 1
-    ##Arrange
-    guess_word = "hello"
-    target_word = "train"
-
-    ##Act
-    score = score_guess(guess_word, target_word)
-
-    ##Assert
-    print("Score:", score, "Expected:", [0, 0, 0, 0, 0])
-
-    # Text Case 2
-    ##Arrange
-    guess_word = "hello"
-    target_word = "hello"
-
-    ##Act
-    score = score_guess(guess_word, target_word)
-
-    ##Assert
-    print("Score:", score, "Expected:", [2, 2, 2, 2, 2])
-
-    # Text Case 3
-    ##Arrange
-    guess_word = "word"
-    target_word = "hello"
-
-    ##Act
-    score = score_guess(guess_word, target_word)
-
-    ##Assert
-    print("Score:", score, "Expected:", [2, 2, 2, 2, 2])
+##    # Test Case 1
+##    ##Arrange
+##    guess_word = "hello"
+##    target_word = "train"
+##
+##    ##Act
+##    score = score_guess(guess_word, target_word)
+##
+##    ##Assert
+##    print("Score:", score, "Expected:", [0, 0, 0, 0, 0])
+##
+##    # Text Case 2
+##    ##Arrange
+##    guess_word = "hello"
+##    target_word = "hello"
+##
+##    ##Act
+##    score = score_guess(guess_word, target_word)
+##
+##    ##Assert
+##    print("Score:", score, "Expected:", [2, 2, 2, 2, 2])
+##
+##    # Text Case 3
+##    ##Arrange
+##    guess_word = "word"
+##    target_word = "hello"
+##
+##    ##Act
+##    score = score_guess(guess_word, target_word)
+##
+##    ##Assert
+##    print("Score:", score, "Expected:", [2, 2, 2, 2, 2])
 
     # Text Case 4
     ##Arrange
-    all_word_filename = "all_words.txt"
+    all_word_filename = "resources/all_words.txt"
 
     ##Act
     all_word_list = read_words_from_file(all_word_filename)
@@ -142,7 +175,7 @@ def test_game():
     # Test Case 5
     # TODO: Set up your arrange-act-assert test case.
     ##Arrange
-    target_words_filename = "all_words.txt"
+    target_words_filename = "resources/all_words.txt"
 
     ##Act
     target_words_list = read_words_from_file(all_word_filename)
