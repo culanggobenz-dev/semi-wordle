@@ -1,0 +1,12 @@
+Make a variable that holds the current position/index in target word during the iteration.
+
+
+Reiterate through the characters of the guess word:
+    Code these statements to check each letter of the word:
+        Check if the current character of guess word, is the same as the current character of target word using the index variable. If so add the 2 to the score list.
+        If the previous check fails, check the current letter of guess word is within the target word. If so add 1 to the score list.
+        If all checks fail, add 0 to the score list.
+
+    Add 1 to the index variable
+
+Return score
