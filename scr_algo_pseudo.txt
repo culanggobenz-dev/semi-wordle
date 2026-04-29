@@ -1,5 +1,8 @@
 Make a variable that holds the current position/index in target word during the iteration.
 
+Make another variable that holds the score list
+
+Run a check if the length of both word is the same. If not return a statement that length is wrong.
 
 Reiterate through the characters of the guess word:
     Code these statements to check each letter of the word:

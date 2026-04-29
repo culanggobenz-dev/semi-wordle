@@ -66,12 +66,12 @@ def score_guess(guess, target):
 
     index = 0
     score = []
-    
-    if len(target) != len(guess):
-        return "Error: Incorrect word length!"
-    
-    else:
-        for char in guess:
+
+    #Deleted the length checker
+    ##Made a separate checker that handles both length and word validity.
+    ##Check is_word_valid function
+
+    for char in guess:
             if char is target[index]:
                 score.append(2)
             elif char in target:
@@ -81,7 +81,8 @@ def score_guess(guess, target):
 
             index += 1
 
-        return score
+    return score
+        
 
 # Read File Into Word List Function
 def read_words_from_file(filename):
@@ -180,7 +181,55 @@ def confirm_instructions():
         print("Use Y and N only!") #Catch error for unwanted responses
         confirm_instructions()
 
-    
+# Gameplay Loop Function
+def gameplay(target_word, valid_word_list, max_guess, cheat = False):
+    """
+    Main gameplay loop. 
+    """
+
+    # Variables
+    remaining_guess = max_guess
+    target_word_length = len(target_word)
+    score = []
+
+    # Letting the player know the length of target word
+    print(f"Target word is {target_word_length} letters long.")
+
+    # Main Gameplay Loop
+    while remaining_guess > 0:
+        
+        print("Make a guess:")
+        
+        if cheat == True: #Prints out the target word. For testing only!
+            print(f"Target Word: {target_word}")
+        player_guess = input("").lower()
+
+
+        # Validates the word if its acceptable
+        if is_word_valid(target_word, player_guess, valid_word_list):
+
+            # Creates score
+            score = score_guess(player_guess, target_word)
+            # Display score
+            display_score(score, player_guess)
+
+            #Checks if guess is correct 
+            if is_guess_correct(score, target_word_length):
+                return print(f"Wow! You have guessed correctly. {target_word.capitalize()} is the target word. Congratulations!")
+            
+            remaining_guess -= 1
+
+            print("Available guess remaining:", remaining_guess)
+
+        #Loop continues when guess word is not valid
+        else:
+            continue
+
+    if remaining_guess == 0:
+        print("You have run out of guesses! Game Over.")
+
+    print("Game Close.")
+        
 
 # Any Optional Additional Functions
 def random_word(words_list):
@@ -244,7 +293,7 @@ def display_score(score, guess):
     word_output = ""
 
     # Build score output
-    # Eg, (1,1,0,2,2) should become "? ? - O O"
+    ## Eg, (1,1,0,2,2) should become "? ? - O O"
     for num in score:
         if num == 0:
             score_output += " -"
@@ -254,26 +303,62 @@ def display_score(score, guess):
             score_output += " O"
 
     # Build word output based on guess word
-    # "rival" should become "R I V A L"
+    ## "rival" should become "R I V A L"
     caps_guess = guess.upper()
 
     for char in caps_guess:
         word_output += f" {char}"
 
+    # Display score
+    print("Your guess:")
     # Display score output
     print(score_output)
     # Display word output
     print(word_output)
 
-def gameplay(target_word, valid_word_list, max_guess):
-    remaining_guess = max_guess
+# Guess checker
+def is_guess_correct(score, word_len):
+    """
+    Checks if guess is correct
+    """
 
-"""
-CONTINUE HERE
-"""
-##    while remaining_guess > 0:
+    #Set the correct list of score
+    ## [2, 2, 2, 2,] PS: length depends on target
+    correct_score = []
+
+    #Dynamic change in length to acommodate length variation
+    for num in range(word_len):
+        correct_score.append(2)
+
+    #Returns
+    ##Return True if list is the same
+    if score == correct_score:
+        return True
+    ##Return False if not
+    return False
         
+# Word Validator
+def is_word_valid (target, guess, valid_words):
+    """
+    Validates the guess if it meets the valid word as per clients request
+    """
 
+    # Validator
+    ##Checks for perfect length
+    if len(guess) < len(target):
+        print("Word Validator: Your word is too short. Try making another guess.")
+        return False
+    elif len(guess) > len(target):
+        print("Word Validator: Your word is too long. Try making another guess.")
+        return False
+    ##Checks for word validity
+    elif guess not in valid_words:
+        print("Word Validator: Your word is not valid. Try making another guess.")
+        return False
+
+    ##Return true if the word is valid
+    return True
+    
     
 # Play Game Function
 def play_game():
@@ -295,7 +380,7 @@ def play_game():
     target_word = random_word(target_words_list)
 
     ##Gameplay Loop & Ending
-    
+    gameplay(target_word, all_words_list, MAX_GUESS, cheat = False)
     
     
     
